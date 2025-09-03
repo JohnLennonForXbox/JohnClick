@@ -1,5 +1,6 @@
 body {
-    font-family: 'Roboto'
+    font-family: 'Roboto';
+    touch-action: manipulation;
 }
 
 .center { 
@@ -53,6 +54,12 @@ body {
     width: 150px;
     text-align: center;
     background-clip: padding-box;
+}
+
+.Johngrade button {
+    border-radius: 5%;
+    border: 3px solid black;
+    color: black;
 }
 
 .Johngrade img {
