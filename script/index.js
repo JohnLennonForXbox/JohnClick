@@ -21,7 +21,7 @@ function ClickJohn() {
 }
 
 function PlayJohnSound() {
-    const JohnSound =  new Audio('../audio/John lennon.wav');
+    const JohnSound =  new Audio('./audio/John lennon.wav');
     JohnSound.playbackRate = Math.random() * (2.0 - 0.5) + 0.5;
     console.log(JohnSound.playbackRate);
     JohnSound.play();
