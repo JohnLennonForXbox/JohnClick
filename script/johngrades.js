@@ -4,7 +4,7 @@ var JohnGrades = {
         JohnClicks: 1,
         Owned: true,
         Equipped: true,
-        Image: "../img/jlennon.png",
+        Image: "./img/jlennon.png",
         Description: "The original John. Click him to get more Johns!",
     },
     "Stone Lennon": {
@@ -12,7 +12,7 @@ var JohnGrades = {
         JohnClicks: 2,
         Owned: false,
         Equipped: false,
-        Image: "../img/stone lennon.png",
+        Image: "./img/stone lennon.png",
         Description: "Stone statue of John Lennon, he breaks apart and gives you 2 Johns per click",
     },
     "Iron Lennon": {
@@ -20,7 +20,7 @@ var JohnGrades = {
         JohnClicks: 5,
         Owned: false,
         Equipped: false,
-        Image: "../img/iron lennon.png",
+        Image: "./img/iron lennon.png",
         Description: "Cast iron model of John Lennon, he has a little john encapsulated in his head that gives you 5 Johns per click",
     },
     "Gold Lennon": {
@@ -28,7 +28,7 @@ var JohnGrades = {
         JohnClicks: 10,
         Owned: false,
         Equipped: false,
-        Image: "../img/gold lennon.png",
+        Image: "./img/gold lennon.png",
         Description: "So shiny he blinds you and the game director and he gives you 10 Johns per click by mistake because hes so shiny",
     },
     "Diamond Lennon": {
@@ -44,7 +44,7 @@ var JohnGrades = {
         JohnClicks: 100,
         Owned: false,
         Equipped: false,
-        Image: "../img/emerald lennon.png",
+        Image: "./img/emerald lennon.png",
         Description: "Got it from some guy that looks like squidward, his ear is a crank that dispenses 100 Johns per click",
     },
     "Ruby Lennon": {
@@ -52,7 +52,7 @@ var JohnGrades = {
         JohnClicks: 500,
         Owned: false,
         Equipped: false,
-        Image: "../img/ruby lennon.png",
+        Image: "./img/ruby lennon.png",
         Description: "How many hue shifts can i get away with? This one gives you 500 Johns per click",
     },
     "Amethyst Lennon": {
@@ -60,7 +60,7 @@ var JohnGrades = {
         JohnClicks: 1000,
         Owned: false,
         Equipped: false,
-        Image: "../img/amethyst lennon.png",
+        Image: "./img/amethyst lennon.png",
         Description: "I'm running out of things to wrte for these 1000 Johns per click",
     },
     "Invincible Lennon": {
@@ -68,7 +68,7 @@ var JohnGrades = {
         JohnClicks: 5000,
         Owned: false,
         Equipped: false,
-        Image: "../img/invincible lennon.png",
+        Image: "./img/invincible lennon.png",
         Description: "He's in- TITLECARD and gives you 5000 Johns per click",
     }
 }
