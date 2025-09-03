@@ -1,4 +1,4 @@
-var JohnGrades = {
+var DefaultJohnGrades = {
     "John Lennon": {
         Price: 0,
         JohnClicks: 1,
@@ -71,6 +71,12 @@ var JohnGrades = {
         Image: "./img/invincible lennon.png",
         Description: "He's in- TITLECARD and gives you 5000 Johns per click",
     }
+}
+
+var JohnGrades = JSON.parse(localStorage.getItem("JohnGrades"));
+if (JohnGrades == null) {
+    JohnGrades = DefaultJohnGrades;
+    localStorage.setItem("JohnGrades", JSON.stringify(JohnGrades));
 }
 
 export default JohnGrades;

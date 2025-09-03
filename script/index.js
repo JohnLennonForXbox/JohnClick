@@ -1,14 +1,17 @@
 import JohnGrades from './johngrades.js';
 
-let JohnsClicked = 0;
-let EquippedLennon = "John Lennon";
-let JohnsPerClick = 1;
+let JohnsClicked = parseInt(localStorage.getItem("JohnScore")) || 0;
+let EquippedLennon = localStorage.getItem("EquippedJohn") || "John Lennon";
+let JohnsPerClick = JohnGrades[EquippedLennon].JohnClicks;
 
 const JohnSound =  new Audio('./audio/John lennon.wav');
 
 const button = document.getElementById('JohnLennon');
 console.log(button);
 const heading = document.getElementById('JohnsClicked');
+
+heading.textContent = `Johns clicked: ${JohnsClicked}`;
+
 button.addEventListener('click', () => {
     ClickJohn();
 });
@@ -18,6 +21,7 @@ button.addEventListener("contextmenu", function(event) {
 
 function ClickJohn() {
     JohnsClicked += JohnsPerClick;
+    localStorage.setItem("JohnScore", JohnsClicked);
     heading.textContent = `Johns clicked: ${JohnsClicked}`;
     PlayJohnSound();
 }
@@ -27,6 +31,19 @@ function PlayJohnSound() {
     console.log(JohnSound.playbackRate);
     JohnSound.play();
 }
+
+function EquipJohn(name) {
+    JohnGrades[EquippedLennon].Equipped = false;
+    document.getElementById(EquippedLennon).classList.remove('equipped');
+    EquippedLennon = name;
+    JohnsPerClick = JohnGrades[name].JohnClicks;
+    document.getElementById('JohnLennonImage').src = JohnGrades[name].Image;
+    JohnGrades[name].Equipped = true;
+    document.getElementById(name).classList.add('equipped');
+    localStorage.setItem("EquippedJohn", EquippedLennon);
+    localStorage.setItem("JohnGrades", JSON.stringify(JohnGrades));
+}
+
 
 const JohngradeContainer = document.getElementById('JohngradeContainer');
 for (const name in JohnGrades) {
@@ -48,14 +65,11 @@ for (const name in JohnGrades) {
             heading.textContent = `Johns clicked: ${JohnsClicked}`;
             JohnGrades[name].Owned = true;
             document.getElementById(name).classList.add('owned');
+            localStorage.setItem("JohnGrades", JSON.stringify(JohnGrades));
         } else if (JohnGrades[name].Owned && !JohnGrades[name].Equipped) {
-            JohnGrades[EquippedLennon].Equipped = false;
-            document.getElementById(EquippedLennon).classList.remove('equipped');
-            EquippedLennon = name;
-            JohnsPerClick = JohnGrades[name].JohnClicks;
-            document.getElementById('JohnLennonImage').src = JohnGrades[name].Image;
-            JohnGrades[name].Equipped = true;
-            document.getElementById(name).classList.add('equipped');
+            EquipJohn(name);
         }
     });
 }
+
+EquipJohn(EquippedLennon);
