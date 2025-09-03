@@ -1,6 +1,69 @@
+body {
+    font-family: 'Roboto'
+}
+
 .center { 
     display: block; 
     margin-left: auto; 
     margin-right: auto; 
     width: 50%;
+    text-align: center;
+}
+
+.button {
+    background-color: transparent; 
+    border: none; 
+    padding: 0; 
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.button:active {
+  transform: scale(0.95);
+  filter: drop-shadow(0 0 15px black);
+}
+
+.button:focus {
+    outline: none;
+    background-color: transparent!important;
+}
+
+#JohngradeContainer {
+    flex: auto;
+    flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.Johngrade {
+    padding: 5px;
+    width: 150px;
+    text-align: center;
+    background-clip: padding-box;
+}
+
+.Johngrade img {
+    width: 150px;
+    height: auto;
+}
+
+.Johngrade .owned {
+    color: green;
+    background-color: lightgreen;
+    font-weight: bold;
+}
+
+.Johngrade .equipped {
+    color: blue !important;
+    background-color: lightblue !important;
+    font-weight: bold;
+    pointer-events: none;
 }

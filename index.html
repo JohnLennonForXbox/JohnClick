@@ -1,13 +1,35 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" href="/img/jlennon.png">
     <link rel="stylesheet" href="/style.css">
+    <link rel="script" href="/script/index.js">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brain damage</title>
+    <title>John Lennon Clicker</title>
   </head>
   <body>
-    <img src="./img/jlennon.png" alt="Jonny Lennon" class="center">
+    <!-- School's fault lmao -->
+    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+
+    <button class="center button" id="JohnLennon">
+      <img src="./img/jlennon.png" alt="Jonny Lennon" draggable="false" id="JohnLennonImage">
+    </button>
+    <h3 id="JohnsClicked" class="center">Johns clicked: 0</h3>
+    <br>
+    <div class="center">
+      <h1>Johngrades</h1>
+      <h2>Click the john lennon to buy Johngrades and increase your JohnScore</h2>
+      <div id="JohngradeContainer"></div>
+    </div>
+
+    <script src="/script/index.js" type="module"></script>
+    <div class="center">
+          <p style="color: gray">John Lennon Clicker for Web v1.0.0</p>
+          <button onclick=eruda.init()>Start debugger</button>
+    </div>
   </body>
 </html>
