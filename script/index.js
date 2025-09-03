@@ -4,6 +4,8 @@ let JohnsClicked = 0;
 let EquippedLennon = "John Lennon";
 let JohnsPerClick = 1;
 
+const JohnSound =  new Audio('./audio/John lennon.wav');
+
 const button = document.getElementById('JohnLennon');
 console.log(button);
 const heading = document.getElementById('JohnsClicked');
@@ -21,7 +23,6 @@ function ClickJohn() {
 }
 
 function PlayJohnSound() {
-    const JohnSound =  new Audio('./audio/John lennon.wav');
     JohnSound.playbackRate = Math.random() * (2.0 - 0.5) + 0.5;
     console.log(JohnSound.playbackRate);
     JohnSound.play();

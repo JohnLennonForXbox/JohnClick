@@ -24,6 +24,11 @@ body {
     -webkit-tap-highlight-color: transparent;
 }
 
+.button img {
+    max-width: 100%;
+    height: auto;
+}
+
 .button:active {
   transform: scale(0.95);
   filter: drop-shadow(0 0 15px black);
