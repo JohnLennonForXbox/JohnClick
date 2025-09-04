@@ -26,6 +26,14 @@ function ClickJohn() {
     PlayJohnSound();
 }
 
+function SetJohnsClicked(amount) {
+    JohnsClicked = amount;
+    localStorage.setItem("JohnScore", JohnsClicked);
+    heading.textContent = `Johns clicked: ${JohnsClicked}`;
+}
+
+window.SetJohnsClicked = SetJohnsClicked;
+
 function PlayJohnSound() {
     JohnSound.playbackRate = Math.random() * (2.0 - 0.5) + 0.5;
     console.log(JohnSound.playbackRate);

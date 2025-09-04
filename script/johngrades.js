@@ -70,10 +70,19 @@ var DefaultJohnGrades = {
         Equipped: false,
         Image: "./img/invincible lennon.png",
         Description: "He's in- TITLECARD and gives you 5000 Johns per click",
+    },
+    "Six Lennon": {
+        Price: 416741674167,
+        JohnClicks: 41674167,
+        Owned: false,
+        Equipped: false,
+        Image: "./img/Six Lennon.png",
+        Description: "SIX SEVEN",
     }
 }
 
 var JohnGrades = JSON.parse(localStorage.getItem("JohnGrades"));
+JohnGrades = Object.assign({}, DefaultJohnGrades, JohnGrades)
 if (JohnGrades == null) {
     JohnGrades = DefaultJohnGrades;
     localStorage.setItem("JohnGrades", JSON.stringify(JohnGrades));
