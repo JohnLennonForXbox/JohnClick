@@ -78,14 +78,31 @@ var DefaultJohnGrades = {
         Equipped: false,
         Image: "./img/Six Lennon.png",
         Description: "SIX SEVEN",
-    }
+    },
+    "Chimera Lennon": {
+        Price: 0,
+        JohnClicks: 0,
+        Owned: false,
+        Equipped: false,
+        Image: "./img/Chimera Lennon.png",
+        Description: "NOOO YOU'RE SUPPOSED TO OBEY ME The Seven LEnnon SouLS: ",
+    },
 }
 
 var JohnGrades = JSON.parse(localStorage.getItem("JohnGrades"));
 JohnGrades = Object.assign({}, DefaultJohnGrades, JohnGrades)
 if (JohnGrades == null) {
     JohnGrades = DefaultJohnGrades;
-    localStorage.setItem("JohnGrades", JSON.stringify(JohnGrades));
 }
+
+for (const name in JohnGrades) {
+    if (name == "Chimera Lennon") {
+        continue;
+    }
+    JohnGrades["Chimera Lennon"].JohnClicks += JohnGrades[name].JohnClicks
+    JohnGrades["Chimera Lennon"].Price += JohnGrades[name].Price
+}
+
+localStorage.setItem("JohnGrades", JSON.stringify(JohnGrades));
 
 export default JohnGrades;
