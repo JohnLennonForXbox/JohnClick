@@ -34,6 +34,17 @@ function SetJohnsClicked(amount) {
 
 window.SetJohnsClicked = SetJohnsClicked;
 
+function ResetData() {
+    if (confirm("Are you sure you want to reset all your data? This action cannot be undone.")) {
+        if (confirm("Are you REALLY sure you want to reset all your data? This action cannot be undone and your johns will be ground up into a fine paste.")) {
+            localStorage.clear();
+            location.reload();
+        }
+    }
+}
+
+window.ResetData = ResetData;
+
 function PlayJohnSound() {
     JohnSound.playbackRate = Math.random() * (2.0 - 0.5) + 0.5;
     console.log(JohnSound.playbackRate);
