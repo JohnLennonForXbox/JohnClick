@@ -95,12 +95,14 @@ if (JohnGrades == null) {
     JohnGrades = DefaultJohnGrades;
 }
 
-for (const name in JohnGrades) {
-    if (name == "Chimera Lennon") {
-        continue;
+if (JohnGrades["Chimera Lennon"].JohnClicks == 0) {
+    for (const name in JohnGrades) {
+        if (name == "Chimera Lennon") {
+            continue;
+        }
+        JohnGrades["Chimera Lennon"].JohnClicks += JohnGrades[name].JohnClicks
+        JohnGrades["Chimera Lennon"].Price += JohnGrades[name].Price
     }
-    JohnGrades["Chimera Lennon"].JohnClicks += JohnGrades[name].JohnClicks
-    JohnGrades["Chimera Lennon"].Price += JohnGrades[name].Price
 }
 
 localStorage.setItem("JohnGrades", JSON.stringify(JohnGrades));
