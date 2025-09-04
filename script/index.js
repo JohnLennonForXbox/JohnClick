@@ -45,6 +45,57 @@ function ResetData() {
 
 window.ResetData = ResetData;
 
+function ExportData() {
+    const stringed = JSON.stringify(localStorage);
+    const encoder = new TextEncoder();
+    const uint8Array = encoder.encode(stringed);
+
+    let binaryString = "";
+    for (let i = 0; i < uint8Array.length; i++) {
+    binaryString += String.fromCharCode(uint8Array[i]);
+    }
+
+    const encodedUnicodeString = btoa(binaryString);
+
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(encodedUnicodeString).then(() => {
+            alert("Data exported to clipboard!");
+        }
+        ).catch(err => {
+            alert("Failed to copy data to clipboard: ", err);
+        });
+    } else {
+        prompt("Copy your data:", encodedUnicodeString);
+    }    
+}
+
+function ImportData() {
+    const encodedUnicodeString = prompt("Paste your data here:");
+    if (!encodedUnicodeString) {
+        return;
+    }
+    try {
+        const binaryString = atob(encodedUnicodeString);
+        const uint8Array = new Uint8Array(binaryString.length);
+        for (let i = 0; i < binaryString.length; i++) {
+            uint8Array[i] = binaryString.charCodeAt(i);
+        }
+        const decoder = new TextDecoder();
+        const stringed = decoder.decode(uint8Array);
+        const parsed = JSON.parse(stringed);
+        localStorage.clear();
+        for (const key in parsed) {
+            localStorage.setItem(key, parsed[key]);
+        }
+        location.reload();
+    } catch (e) {
+        alert("Failed to import data: " + e);
+    }
+}
+
+window.ExportData = ExportData;
+window.ImportData = ImportData;
+
 function PlayJohnSound() {
     JohnSound.playbackRate = Math.random() * (2.0 - 0.5) + 0.5;
     console.log(JohnSound.playbackRate);
