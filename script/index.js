@@ -123,7 +123,6 @@ function FillJohntainers(htmlTemplate, items, containerId) {
         itemElement.className = 'Johngrade';
         itemElement.innerHTML = htmlTemplate
     }
-/// test
 }
 
 

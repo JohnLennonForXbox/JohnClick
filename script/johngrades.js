@@ -1,4 +1,4 @@
-var DefaultJohnGrades = {
+var JohnGrades = {
     "John Lennon": {
         Price: 0,
         JohnClicks: 1,
@@ -89,7 +89,8 @@ var DefaultJohnGrades = {
     },
 }
 
-var JohnGrades = JSON.parse(localStorage.getItem("JohnGrades"));
+var SavedJohnGrades = JSON.parse(localStorage.getItem("JohnGrades"));
+
 JohnGrades = Object.assign({}, DefaultJohnGrades, JohnGrades)
 if (JohnGrades == null) {
     JohnGrades = DefaultJohnGrades;
@@ -107,4 +108,4 @@ if (JohnGrades["Chimera Lennon"].JohnClicks == 0) {
 
 localStorage.setItem("JohnGrades", JSON.stringify(JohnGrades));
 
-export default JohnGrades;
+export default { JohnGrades, SavedJohnGrades };
