@@ -1,4 +1,4 @@
-var JohnGrades = {
+export var JohnGrades = {
     "John Lennon": {
         Price: 0,
         JohnClicks: 1,
@@ -89,23 +89,36 @@ var JohnGrades = {
     },
 }
 
-var SavedJohnGrades = JSON.parse(localStorage.getItem("JohnGrades"));
-
-JohnGrades = Object.assign({}, DefaultJohnGrades, JohnGrades)
-if (JohnGrades == null) {
-    JohnGrades = DefaultJohnGrades;
-}
-
-if (JohnGrades["Chimera Lennon"].JohnClicks == 0) {
+if (JohnGrades["Chimera Lennon"].JohnClicks == 0) { // Chimera Lennon is a combination of all other JohnGrades
     for (const name in JohnGrades) {
         if (name == "Chimera Lennon") {
             continue;
         }
         JohnGrades["Chimera Lennon"].JohnClicks += JohnGrades[name].JohnClicks
         JohnGrades["Chimera Lennon"].Price += JohnGrades[name].Price
+        // As such it is as expensive as all other JohnGrades combined
+        // and gives as many Johns per click as all other JohnGrades combined
     }
 }
 
-localStorage.setItem("JohnGrades", JSON.stringify(JohnGrades));
+var SavedJohnGrades = JSON.parse(localStorage.getItem("JohnGrades"));
 
-export default { JohnGrades, SavedJohnGrades };
+if (SavedJohnGrades == null) { // New JohnGrades format, only stores Owned and Equipped
+    console.log("writing starter Johngrades");
+    SavedJohnGrades = {};
+    for (const name in JohnGrades) {
+        SavedJohnGrades[name] = {Owned: false, Equipped: false};
+    }
+    console.log(SavedJohnGrades);
+    SavedJohnGrades["John Lennon"] = {Owned: true, Equipped: true};
+} else {
+    for (const name in JohnGrades) { // Reconcile new JohnGrades with old saves
+        // Something could go really wrong if SaveFixer doesn't run before this on <v1.5.0 saves
+        if (SavedJohnGrades[name] === undefined) {
+            SavedJohnGrades[name] = {Owned: false, Equipped: false};
+        }
+    }
+}
+localStorage.setItem("JohnGrades", JSON.stringify(SavedJohnGrades));
+
+// localStorage.setItem("JohnGrades", JSON.stringify(JohnGrades));

@@ -6,18 +6,23 @@ import GAMEINFO from './common.js';
 // Also adds a lastOpenedVersion key to localStorage for more save patches later
 
 function FixData() {
-    if (localStorage.getItem('lastOpenedVersion') === null) {
+    console.log("Running save fixer");
+    if (localStorage.getItem('lastOpenedVersion') === null && localStorage.getItem('JohnGrades') !== null) {
+        console.log("Fixing JohnGrades save data");
         if (localStorage.getItem('JohnGrades') !== null) { 
+            // v1.5.0 and onwards will only store Owned and Equipped properties for each JohnGrade
             let newJohnGrades = {};
             let curJohnGrades = JSON.parse(localStorage.getItem('JohnGrades'))
-            for (const key in curJohnGrades) {
+            for (const key in curJohnGrades) { 
                 console.log(curJohnGrades[key]);
                 Object.assign(newJohnGrades, { [key]: {Owned: curJohnGrades[key].Owned, Equipped: curJohnGrades[key].Equipped} });
             }
+            console.log("Writing fixed JohnGrades to localStorage");
             localStorage.setItem('JohnGrades', JSON.stringify(newJohnGrades));
         }
-        localStorage.setItem('lastOpenedVersion', GAMEINFO.GAMEVERSION);
     }
+    localStorage.setItem('lastOpenedVersion', GAMEINFO.GAMEVERSION);
+    console.log("Save fixer done");
 }
 
 export default FixData;

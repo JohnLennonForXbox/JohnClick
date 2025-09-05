@@ -1,8 +1,19 @@
-import JohnGrades from './johngrades.js';
+import FixData from './save-fixer.js';
+
+FixData();
+// data fixer must run before we even think about touching the save file
+// or something Evil will happen
+
+import { JohnGrades } from './johngrades.js';
+import GAMEINFO from './common.js';
+
+let SavedJohnGrades = JSON.parse(localStorage.getItem("JohnGrades"));
+
+document.getElementById("version").textContent = `John Lennon Clicker for Web v${GAMEINFO.GAMEVERSION}`;
 
 let JohnsClicked = parseInt(localStorage.getItem("JohnScore")) || 0;
 let BaseJohntiplier = parseInt(localStorage.getItem("BaseJohntiplier")) || 1;
-let EquippedLennon = localStorage.getItem("EquippedJohn") || "John Lennon";
+let EquippedLennon = Object.keys(SavedJohnGrades).find(name => SavedJohnGrades[name].Equipped) || "John Lennon";
 let JohnsPerClick = JohnGrades[EquippedLennon].JohnClicks;
 
 const JohnSound =  new Audio('./audio/John lennon.wav');
@@ -47,7 +58,17 @@ function ResetData() {
 window.ResetData = ResetData;
 
 function ExportData() {
-    const stringed = JSON.stringify(localStorage);
+    let save = {};
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        console.log(key);
+        if (!key.includes("eruda") && key !== "lastOpenedVersion") {
+            const value = localStorage.getItem(key);
+            save[key] = value;
+        }
+    }
+
+    const stringed = JSON.stringify(save);
     const encoder = new TextEncoder();
     const uint8Array = encoder.encode(stringed);
 
@@ -104,34 +125,26 @@ function PlayJohnSound() {
 }
 
 function EquipJohn(name) {
-    JohnGrades[EquippedLennon].Equipped = false;
+    SavedJohnGrades[EquippedLennon].Equipped = false;
+    console.log(EquippedLennon, SavedJohnGrades);
     document.getElementById(EquippedLennon).classList.remove('equipped');
     EquippedLennon = name;
-    JohnsPerClick = JohnGrades[name].JohnClicks;
-    document.getElementById('JohnLennonImage').src = JohnGrades[name].Image;
-    JohnGrades[name].Equipped = true;
-    document.getElementById(name).classList.add('equipped');
-    localStorage.setItem("EquippedJohn", EquippedLennon);
-    localStorage.setItem("JohnGrades", JSON.stringify(JohnGrades));
+    SavedJohnGrades[EquippedLennon].Equipped = true;
+    JohnsPerClick = JohnGrades[EquippedLennon].JohnClicks;
+    document.getElementById('JohnLennonImage').src = JohnGrades[EquippedLennon].Image;
+    document.getElementById(EquippedLennon).classList.add('equipped');
+    localStorage.setItem("JohnGrades", JSON.stringify(SavedJohnGrades));
 }
 
-function FillJohntainers(htmlTemplate, items, containerId) {
-    const container = document.getElementById(containerId);
-    for (const itemName in items) {
-        const item = items[itemName];
-        const itemElement = document.createElement('div');
-        itemElement.className = 'Johngrade';
-        itemElement.innerHTML = htmlTemplate
-    }
-}
-
-
+// This code reeks but I don't really care to rewrite it
 const JohngradeContainer = document.getElementById('JohngradeContainer');
 for (const name in JohnGrades) {
     const Johngrade = document.createElement('div');
     Johngrade.className = 'Johngrade';
+    // This code is why I needed to rewrite saves Lmfao
+    // I don't really know how you could exploit it but better safe than sorry
     Johngrade.innerHTML = `
-        <button class="${JohnGrades[name].Owned ? "owned" : ''} ${JohnGrades[name].Equipped ? "equipped" : '' }" id="${name}">
+        <button class="${SavedJohnGrades[name].Owned ? "owned" : ''} ${SavedJohnGrades[name].Equipped ? "equipped" : '' }" id="${name}">
             <h3>${name}</h3>
             <img src="${JohnGrades[name].Image}" alt="${name}" class="Johngrade-image">
             <p>${JohnGrades[name].Description}</p>
@@ -141,18 +154,21 @@ for (const name in JohnGrades) {
     `
     JohngradeContainer.appendChild(Johngrade);
     Johngrade.addEventListener('click', () => {
-        if (!JohnGrades[name].Owned && JohnsClicked >= JohnGrades[name].Price) {
+        if (!SavedJohnGrades[name].Owned && JohnsClicked >= JohnGrades[name].Price) {
             JohnsClicked -= JohnGrades[name].Price;
             heading.textContent = `Johns clicked: ${JohnsClicked}`;
-            JohnGrades[name].Owned = true;
+            SavedJohnGrades[name].Owned = true;
             document.getElementById(name).classList.add('owned');
-            localStorage.setItem("JohnGrades", JSON.stringify(JohnGrades));
-        } else if (JohnGrades[name].Owned && !JohnGrades[name].Equipped) {
+            localStorage.setItem("JohnGrades", JSON.stringify(SavedJohnGrades));
+            localStorage.setItem("JohnScore", JohnsClicked);
+        } else if (SavedJohnGrades[name].Owned && !SavedJohnGrades[name].Equipped) {
             EquipJohn(name);
         }
     });
 }
 
 
-
-EquipJohn(EquippedLennon);
+console.log(EquippedLennon);
+JohnsPerClick = JohnGrades[EquippedLennon].JohnClicks;
+document.getElementById('JohnLennonImage').src = JohnGrades[EquippedLennon].Image;
+document.getElementById(EquippedLennon).classList.add('equipped');
