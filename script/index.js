@@ -1,6 +1,7 @@
 import JohnGrades from './johngrades.js';
 
 let JohnsClicked = parseInt(localStorage.getItem("JohnScore")) || 0;
+let BaseJohntiplier = parseInt(localStorage.getItem("BaseJohntiplier")) || 1;
 let EquippedLennon = localStorage.getItem("EquippedJohn") || "John Lennon";
 let JohnsPerClick = JohnGrades[EquippedLennon].JohnClicks;
 
@@ -20,7 +21,7 @@ button.addEventListener("contextmenu", function(event) {
 });
 
 function ClickJohn() {
-    JohnsClicked += JohnsPerClick;
+    JohnsClicked += JohnsPerClick * BaseJohntiplier;
     localStorage.setItem("JohnScore", JohnsClicked);
     heading.textContent = `Johns clicked: ${JohnsClicked}`;
     PlayJohnSound();
@@ -114,6 +115,17 @@ function EquipJohn(name) {
     localStorage.setItem("JohnGrades", JSON.stringify(JohnGrades));
 }
 
+function FillJohntainers(htmlTemplate, items, containerId) {
+    const container = document.getElementById(containerId);
+    for (const itemName in items) {
+        const item = items[itemName];
+        const itemElement = document.createElement('div');
+        itemElement.className = 'Johngrade';
+        itemElement.innerHTML = htmlTemplate
+    }
+
+}
+
 
 const JohngradeContainer = document.getElementById('JohngradeContainer');
 for (const name in JohnGrades) {
@@ -141,5 +153,7 @@ for (const name in JohnGrades) {
         }
     });
 }
+
+
 
 EquipJohn(EquippedLennon);
