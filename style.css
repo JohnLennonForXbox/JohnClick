@@ -1,6 +1,24 @@
+:root {
+    --background-color: #ffffff;
+    --text-color: #000000;
+    --button-background-color: #f0f0f0;
+    --button-border-color: #cccccc;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #000000;
+        --text-color: #ffffff;
+        --button-background-color: #333333;
+        --button-border-color: #666666;
+    }
+}
+
 body {
     font-family: 'Roboto';
     touch-action: manipulation;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 .center { 
@@ -64,8 +82,9 @@ body {
 
 .Johngrade button {
     border-radius: 5%;
-    border: 3px solid black;
-    color: black;
+    border: 3px solid var(--button-border-color);
+    color: var(--text-color);
+    background-color: var(--button-background-color);
 }
 
 .Johngrade img {
@@ -99,7 +118,9 @@ body {
     top: 0;
     right: 5px;
     bottom: 50px;
-    width: 100%;
+    width: 50%;
     height: auto;
     z-index: 2;
+    display: block;
+    margin: auto;
 }
