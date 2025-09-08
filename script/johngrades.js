@@ -72,7 +72,7 @@ export var JohnGrades = {
         Description: "He's in- TITLECARD and gives you 15,000 Johns per click",
     },
     "Six Lennon": {
-        Price: 416741674167,
+        Price: 6741674167,
         JohnClicks: 41674167,
         Owned: false,
         Equipped: false,
