@@ -118,7 +118,7 @@ renderItems({
     type: 'accessory',
     onClick: (name) => {
         if (!SavedJohnAccessory[name].Owned && JohnsClicked >= JohnAccessories[name].Price) {
-            JohnsClicked = UpdateJohnScore(JohnGrades - JohnAccessories[name].Price);
+            JohnsClicked = UpdateJohnScore(JohnsClicked - JohnAccessories[name].Price);
             SavedJohnAccessory[name].Owned = true;
             document.getElementById(name).classList.add('owned');
             localStorage.setItem("JohnAccessories", JSON.stringify(SavedJohnAccessory));
@@ -135,7 +135,7 @@ renderItems({
     type: 'grade',
     onClick: (name) => {
         if (!SavedJohnGrades[name].Owned && JohnsClicked >= JohnGrades[name].Price) {
-            JohnsClicked = UpdateJohnScore(JohnGrades - JohnGrades[name].Price);
+            JohnsClicked = UpdateJohnScore(JohnsClicked - JohnGrades[name].Price);
             SavedJohnGrades[name].Owned = true;
             document.getElementById(name).classList.add('owned');
             localStorage.setItem("JohnGrades", JSON.stringify(SavedJohnGrades));
