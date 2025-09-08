@@ -48,7 +48,7 @@ export var JohnAccessories = {
         Description: "Ringo Starr's scarf, its drum powers gives you 8x more Johns per click",
     },
     "John Hat": {
-        Price: 500000000,
+        Price: 50000000,
         Johntiplier: 10,
         Owned: false,
         Equipped: false,
@@ -56,7 +56,7 @@ export var JohnAccessories = {
         Description: "John's iconic hat, gives you 10x more Johns per click",
     },
     "Wizard Hat": {
-        Price: 10000000000,
+        Price: 100000000,
         Johntiplier: 20,
         Owned: false,
         Equipped: false,

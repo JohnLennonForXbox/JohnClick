@@ -25,11 +25,11 @@ export var JohnGrades = {
     },
     "Gold Lennon": {
         Price: 1000,
-        JohnClicks: 10,
+        JohnClicks: 20,
         Owned: false,
         Equipped: false,
         Image: "./img/gold lennon.png",
-        Description: "So shiny he blinds you and the game director and he gives you 10 Johns per click by mistake because hes so shiny",
+        Description: "So shiny he blinds you and the game director and he gives you 20 Johns per click by mistake because hes so shiny",
     },
     "Diamond Lennon": {
         Price: 10000,
@@ -40,7 +40,7 @@ export var JohnGrades = {
         Description: "A diamond so hard it cuts through your screen and gives you 50 Johns per click",
     },
     "Emerald Lennon": {
-        Price: 100000,
+        Price: 50000,
         JohnClicks: 100,
         Owned: false,
         Equipped: false,
@@ -48,28 +48,28 @@ export var JohnGrades = {
         Description: "Got it from some guy that looks like squidward, his ear is a crank that dispenses 100 Johns per click",
     },
     "Ruby Lennon": {
-        Price: 1000000,
-        JohnClicks: 500,
-        Owned: false,
-        Equipped: false,
-        Image: "./img/ruby lennon.png",
-        Description: "How many hue shifts can i get away with? This one gives you 500 Johns per click",
-    },
-    "Amethyst Lennon": {
-        Price: 10000000,
+        Price: 500000,
         JohnClicks: 1000,
         Owned: false,
         Equipped: false,
-        Image: "./img/amethyst lennon.png",
-        Description: "I'm running out of things to wrte for these 1000 Johns per click",
+        Image: "./img/ruby lennon.png",
+        Description: "How many hue shifts can i get away with? This one gives you 1,000 Johns per click",
     },
-    "Invincible Lennon": {
-        Price: 100000000,
+    "Amethyst Lennon": {
+        Price: 10000000,
         JohnClicks: 5000,
         Owned: false,
         Equipped: false,
+        Image: "./img/amethyst lennon.png",
+        Description: "I'm running out of things to wrte for these 5,000 Johns per click",
+    },
+    "Invincible Lennon": {
+        Price: 100000000,
+        JohnClicks: 15000,
+        Owned: false,
+        Equipped: false,
         Image: "./img/invincible lennon.png",
-        Description: "He's in- TITLECARD and gives you 5000 Johns per click",
+        Description: "He's in- TITLECARD and gives you 15,000 Johns per click",
     },
     "Six Lennon": {
         Price: 416741674167,
@@ -98,6 +98,9 @@ if (JohnGrades["Chimera Lennon"].JohnClicks == 0) { // Chimera Lennon is a combi
         JohnGrades["Chimera Lennon"].Price += JohnGrades[name].Price
         // As such it is as expensive as all other JohnGrades combined
         // and gives as many Johns per click as all other JohnGrades combined
+        // I should probably multiply this by like 200 or something because when
+        // you get the highest Johngrade you need to click like twice to get all the
+        // JohnScore required for chimera lennon
     }
 }
 

@@ -154,3 +154,8 @@ details summary {
 .hide {
     display: none;
 }
+
+.lowtaperfade {
+    width: 16px;
+    height: auto;
+}

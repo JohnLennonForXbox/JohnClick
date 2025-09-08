@@ -35,6 +35,11 @@ button.addEventListener('click', () => {
     PlayJohnSound();
     JohnsClicked = UpdateJohnScore(JohnsClicked + JohnsPerClick * BaseJohntiplier);
 });
+button.addEventListener('keydown', (key) => {
+    if (key.key === "Enter" ) {
+        key.preventDefault();
+    }
+})
 button.addEventListener("contextmenu", function(event) {
     event.preventDefault();
 });
