@@ -3,6 +3,7 @@
     --text-color: #000000;
     --button-background-color: #f0f0f0;
     --button-border-color: #cccccc;
+    --button2-background-color: #c0c0c0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -11,6 +12,7 @@
         --text-color: #ffffff;
         --button-background-color: #333333;
         --button-border-color: #666666;
+        --button2-background-color: #555555;
     }
 }
 
@@ -65,7 +67,7 @@ body {
 
 #JohngradeContainer,
 #AccessoryContainer {
-    flex: auto;
+    flex: 1;
     flex-direction: row;
     display: flex;
     flex-wrap: wrap;
@@ -84,7 +86,7 @@ body {
     border-radius: 5%;
     border: 3px solid var(--button-border-color);
     color: var(--text-color);
-    background-color: var(--button-background-color);
+    background-color: var(--button2-background-color);
 }
 
 .Johngrade img {
@@ -123,4 +125,32 @@ body {
     z-index: 2;
     display: block;
     margin: auto;
+}
+
+details,
+.container {
+    background-color: var(--button-background-color);
+    border: 3px solid var(--button-border-color);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    gap: 20px;
+    display:flex;
+}
+
+.container button {
+    font-size: 3em;
+    border: 5px solid var(--button-border-color);
+    background-color: var(--button2-background-color);
+}
+
+details summary {
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    font-size: 2em;
+}
+
+.hide {
+    display: none;
 }

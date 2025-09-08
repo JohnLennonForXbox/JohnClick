@@ -7,6 +7,13 @@ import GAMEINFO from './common.js';
 
 function FixData() {
     console.log("Running save fixer");
+
+    // Sometimes I dip JohnScore in `string + number` and parseFloat() screams loud as fuuuucckkkk 🤣
+    if (isNaN(parseFloat(localStorage.getItem("JohnScore")))) {
+        console.log("Fixing NaN JohnScore")
+        localStorage.setItem("JohnScore", 0);
+    }
+
     if (localStorage.getItem('lastOpenedVersion') === null && localStorage.getItem('JohnGrades') !== null) {
         console.log("Fixing JohnGrades save data");
         if (localStorage.getItem('JohnGrades') !== null) { 

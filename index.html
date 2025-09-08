@@ -19,6 +19,8 @@
     <!-- School's fault lmao -->
     <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
 
+    <noscript><h1>You know this is a game right you need javascirpt lmfao</h1></noscript>
+
     <button class="center button" id="JohnLennon">
       <div id="ButtonContainer">
         <img src="./img/jlennon.png" alt="Jonny Lennon" draggable="false" id="JohnLennonImage">
@@ -29,17 +31,28 @@
     <h3 id="JohnMultiplier" class="center">Johntiplier: 1x</h3>
 
     <div class="center">
-      <button style="display:none" id="shareButton" class="center" </button>Flex your JohnScore</button>
+      <button id="shareButton" class="center" </button>Flex your JohnScore</button>
+      <div class="container hide" id="shareContainer">
+        <h1>Choose a way to share:</h1>
+        <button class="center" id="share-dialog">Share...</button>
+        <button class="center" id="share-clipboard">Copy to clipboard</button>
+      </div>
     </div>
 
     <br>
     <div class="center">
-      <h1>Johngrades</h1>
-      <h2>Click the john lennon to buy Johngrades and increase your JohnScore</h2>
-      <div id="JohngradeContainer"></div>
-      <h1>John Accessories</h1>
-      <h2>Click the john lennon to buy John Accessories and increase your Johntiplier</h2>
-      <div id="AccessoryContainer"></div>
+      <details>
+        <summary>Johngrades</summary>
+        <h2>Click the john lennon to buy Johngrades and increase your JohnScore</h2>
+        <div id="JohngradeContainer"></div>
+      </details>
+
+      <details>
+        <summary>John Accessories</summary>
+        <h2>Click the john lennon to buy John Accessories and increase your Johntiplier</h2>
+        <div id="AccessoryContainer"></div>
+      </details>
+
     </div>
 
     <script src="./script/index.js" type="module"></script>
