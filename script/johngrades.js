@@ -65,11 +65,11 @@ export var JohnGrades = {
     },
     "Invincible Lennon": {
         Price: 100000000,
-        JohnClicks: 15000,
+        JohnClicks: 500000,
         Owned: false,
         Equipped: false,
         Image: "./img/invincible lennon.png",
-        Description: "He's in- TITLECARD and gives you 15,000 Johns per click",
+        Description: "He's in- TITLECARD and gives you 150,000 Johns per click",
     },
     "Six Lennon": {
         Price: 6741674167,
