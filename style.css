@@ -269,6 +269,13 @@ details summary {
   justify-content: flex-end;
   margin-bottom: 10px;
   gap: 10px;
+  overflow-y: auto;
+}
+
+#settingsGodfather { 
+  height: 80%;
+  width: auto;
+  position: relative;
 }
 
 label {
@@ -290,6 +297,10 @@ label p {
   gap: 10px;
   align-items: right;
   justify-content: flex-end;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  margin: 1em;
 }
 
 .vignette-overlay {
