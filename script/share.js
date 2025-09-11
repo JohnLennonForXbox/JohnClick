@@ -20,10 +20,8 @@ shareDialog.addEventListener("close", async () => {
         if (navigator.clipboard) {
             navigator.clipboard.writeText(generateFlex() + "\n" + window.location.href)
             alert("Copied!")
-            shareContainer.classList.add("hide");
         } else {
             prompt("Copy this to flex your JohnScore cuz we can't access your clipboard:", generateFlex() + "\n" + window.location.href)
-            shareContainer.classList.add("hide");
         }
     } else if (shareDialog.returnValue === "share") {
         try {
@@ -31,7 +29,6 @@ shareDialog.addEventListener("close", async () => {
                 text: generateFlex(),
                 url: window.location.href,
             });
-            shareContainer.classList.add("hide");
         } catch (error) {
             console.error('Error sharing content:', error);
             alert("There was an error flexing your JohnScore 💔")

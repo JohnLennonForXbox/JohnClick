@@ -1,3 +1,3 @@
 export default {
-    GAMEVERSION: "2.0.2",
+    GAMEVERSION: "2.0.3",
 };
