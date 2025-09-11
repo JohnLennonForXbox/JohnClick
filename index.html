@@ -10,14 +10,28 @@
     <link rel="icon" href="./img/jlennon.png">
     <link rel="stylesheet" href="./style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="importmap">
+        {
+          "imports": {
+            "@material/web/": "https://esm.run/@material/web/"
+          }
+        }
+    </script>
+    <script type="module">
+      import '@material/web/all.js';
+      import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+
+      document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
     <title>John Lennon Clicker</title>
   </head>
   <body>
     <!-- School's fault lmao -->
     <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+    <script>eruda.init();</script>
 
     <noscript><h1>You know this is a game right you need javascirpt lmfao</h1></noscript>
 
@@ -31,13 +45,29 @@
     <h3 id="JohnMultiplier" class="center">Johntiplier: 1x</h3>
 
     <div class="center">
-      <button id="shareButton" class="center" </button>Flex your JohnScore</button>
-      <div class="container hide" id="shareContainer">
-        <h1>Choose a way to share:</h1>
-        <button class="center" id="share-dialog">Share...</button>
-        <button class="center" id="share-clipboard">Copy to clipboard</button>
-      </div>
+      <md-outlined-button id="shareButton" class="center" </button>Flex your JohnScore</md-outlined-button>
+      <md-dialog id="shareDialog">
+          <form slot="content" id="form-id" method="dialog">Choose how to flex your JohnScore</form>
+          <div slot="actions">
+            <md-text-button form="form-id" value="share" id="navShare">Share...</md-text-button>
+            <md-text-button form="form-id" value="copy">Copy to clipboard</md-text-button>
+          </div>
+      </md-dialog>
     </div>
+
+    <md-dialog id="updateDialog">
+        <div slot="headline">
+          Updated!
+        </div>
+        <form slot="content" id="update-form" method="dialog">f</form>
+        <div slot="actions">
+          <md-text-button form="update-form" value="close">Nooope</md-text-button>
+          <md-filled-tonal-button form="update-form" value="open-settings">Open Settings</md-filled-tonal-button>
+        </div>
+      </md-dialog>
+
+    <h1 id="BEAR5-TEXT" class="hide">BEAR 5 IS COMING</h1>
+    <img src="./img/misc/Bear_5.png" class="button shake hide" id="BEAR5">
 
     <br>
     <div class="center">
@@ -57,18 +87,31 @@
 
     <script src="./script/index.js" type="module"></script>
     <script src="./script/share.js" type="module"></script>
+    <script src="./script/settings.js" type="module"></script>
+
+    <div class="darken hide" id="settings">
+      <div class="container center" style="flex-direction: column;">
+        <h1>Settings</h1>
+        <md-tabs id="settingsCategoryContainer">
+        </md-tabs>
+        <form id="settingsForm">
+          <div id="settingsContainer"></div>
+          <div id="settingsButtonsContainer">
+            <md-filled-button type="submit" id="settingsSave">Save & close</md-filled-button>
+            <md-outlined-button type="reset" id="settingsReset">Reset</md-outlined-button>
+            <md-outlined-button type="close" id="settingsClose">Close</md-outlined-button>
+          </div>
+        </form>
+      </div>
+    </div>
 
     <div class="center">
-          <p style="color: gray" id="version">If you're seeing this something is hopelessly broken</p>
+          <md-outlined-button onclick='document.getElementById("settings").classList.remove("hide")''>Settings</md-outlined-button>
+          <p style="color: var(--md-sys-color-secondary)" id="version">If you're seeing this something is hopelessly broken</p>
           <div class="center" style="color: gray">
-            <a class="footer-link" href="./changelog.html">Changelog</a>
-            <a class="footer-link" href="./licenses.html">Licenses</a>
+            <md-text-button class="footer-link" href="./changelog.html">Changelog</md-text-button>
+            <md-text-button class="footer-link" href="./licenses.html">Licenses</md-text-button>
           </div>
-          <br>
-          <button onclick=eruda.init();>Start debugger</button>
-          <button onclick=window.ResetData();>Erase data</button>
-          <button onclick=window.ImportData();>Import data</button>
-          <button onclick=window.ExportData();>Export data</button>
     </div>
   </body>
 </html>

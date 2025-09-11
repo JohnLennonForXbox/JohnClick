@@ -28,6 +28,21 @@ function FixData() {
             localStorage.setItem('JohnGrades', JSON.stringify(newJohnGrades));
         }
     }
+    if (localStorage.getItem('lastOpenedVersion') !== GAMEINFO.GAMEVERSION &&
+        localStorage.getItem('lastOpenedVersion') !== null) {
+        console.log("Showing update dialog");
+        const label = document.getElementById("update-form");
+        label.innerText = `John Lennon Clicker has been updated to v${GAMEINFO.GAMEVERSION}. 
+        Would you like to review your settings?`
+        const dialog = document.getElementById("updateDialog")
+        dialog.show();
+        dialog.addEventListener("close", () => {
+            if (dialog.returnValue == "open-settings") {
+                document.getElementById("settings").classList.remove("hide");
+            }
+        })
+
+    }
     localStorage.setItem('lastOpenedVersion', GAMEINFO.GAMEVERSION);
     console.log("Save fixer done");
 }

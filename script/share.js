@@ -1,7 +1,6 @@
 const shareButton = document.getElementById("shareButton");
-const shareDialogButton = document.getElementById("share-dialog");
-const shareClipboardButton = document.getElementById("share-clipboard");
-const shareContainer = document.getElementById("shareContainer");
+const shareDialogButton = document.getElementById("navShare");
+const shareDialog = document.getElementById("shareDialog");
 
 if (!navigator.share) {
     shareDialogButton.style = "display: none"
@@ -13,33 +12,31 @@ function generateFlex() {
 
 
 shareButton.addEventListener("click", async () => {
-    if (shareContainer.classList.contains("hide")) {
-        shareContainer.classList.remove("hide");
-    } else {
-        shareContainer.classList.add("hide");
-    }
+    shareDialog.show();
 });
 
-shareDialogButton.addEventListener("click", async () => {
-     try {
-        await navigator.share({
-            text: generateFlex(),
-            url: window.location.href,
-        });
-        shareContainer.classList.add("hide");
-    } catch (error) {
-        console.error('Error sharing content:', error);
-        alert("There was an error flexing your JohnScore 💔")
-    }
-})
-
-shareClipboardButton.addEventListener("click", async () => {
-    if (navigator.clipboard) {
-        navigator.clipboard.writeText(generateFlex() + "\n" + window.location.href)
-        alert("Copied!")
-        shareContainer.classList.add("hide");
+shareDialog.addEventListener("close", async () => {
+    if (shareDialog.returnValue === "copy") {
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(generateFlex() + "\n" + window.location.href)
+            alert("Copied!")
+            shareContainer.classList.add("hide");
+        } else {
+            prompt("Copy this to flex your JohnScore cuz we can't access your clipboard:", generateFlex() + "\n" + window.location.href)
+            shareContainer.classList.add("hide");
+        }
+    } else if (shareDialog.returnValue === "share") {
+        try {
+            await navigator.share({
+                text: generateFlex(),
+                url: window.location.href,
+            });
+            shareContainer.classList.add("hide");
+        } catch (error) {
+            console.error('Error sharing content:', error);
+            alert("There was an error flexing your JohnScore 💔")
+        }
     } else {
-        prompt("Copy this to flex your JohnScore cuz we can't access your clipboard:", generateFlex() + "\n" + window.location.href)
-        shareContainer.classList.add("hide");
+        console.error("HOW");
     }
 })

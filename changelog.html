@@ -14,10 +14,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <title>John Lennon Clicker - Changelog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="importmap">
+        {
+          "imports": {
+            "@material/web/": "https://esm.run/@material/web/"
+          }
+        }
+    </script>
+    <script type="module">
+      import '@material/web/all.js';
+      import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+
+      document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
 </head>
 <body>
-    <h1><a href=".">Return to John Lennon Clicker</a></h1>
+    <md-filled-button href=".">Return to John Lennon Clicker</md-filled-button>
     <h1>John Lennon Clicker for Web changelog</h1>
+    <h3>v2.0.0</h3>
+    <p>Material 3 redesign</p>
+    <p>BEAR 5 IS HERE <img src="./img/misc/bear 5.jpg" class="lowtaperfade"></p>
+    <p>Settings menu (you can disable or reduce the effects of BEAR 5 here)</p>
+    <p>Buttons at bottom of page have been moved to the "Advanced" category in settings</p>
     <h3>v1.9.0</h3>
     <p>Holding ENTER can no longer click John</p>
     <p>Massive <img src="./img/misc/lowtaperfade.png" class="lowtaperfade"> balance changes</p>

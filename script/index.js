@@ -26,8 +26,19 @@ let BaseJohntiplier = JohnAccessories[EquippedAccessory].Johntiplier || 1;
 let JohnsPerClick = JohnGrades[EquippedLennon].JohnClicks;
 
 const JohnSound =  new Audio('./audio/John lennon.wav');
+const BearAlarm =  new Audio('./audio/alarm.mp3');
+BearAlarm.loop = true;
+BearAlarm.playbackRate = 2;
+BearAlarm.volume = 0.2;
+const BearArrive = new Audio('./audio/bear5-arrival.wav');
+BearArrive.volume = 0.2;
+const BearLoop = new Audio('./audio/bearLoop.wav');
+BearLoop.volume = 0.2;
+BearLoop.loop = true;
+const BearClick = new Audio('./audio/Bonk.wav');
 
 const button = document.getElementById('JohnLennon');
+const BEAR5 = document.getElementById("BEAR5");
 const johntiplierHeading = document.getElementById('JohnMultiplier');
 
 
@@ -43,7 +54,84 @@ button.addEventListener('keydown', (key) => {
 button.addEventListener("contextmenu", function(event) {
     event.preventDefault();
 });
+BEAR5.addEventListener("contextmenu", function(event) {
+    event.preventDefault();
+});
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function waitUntil(conditionFunction, interval = 100) {
+  return new Promise(resolve => {
+    if (conditionFunction()) {
+      resolve();
+      return;
+    }
+
+    const intervalId = setInterval(() => {
+      if (conditionFunction()) {
+        clearInterval(intervalId);
+        resolve();
+      }
+    }, interval);
+  });
+}
+
+
+async function sendBEAR5() {
+    if (JSON.parse(localStorage.getItem("settings")).BEAR5DisableSwitch) {
+        console.log("BEAR 5 is disabled");
+        return;
+    }
+    console.log("BEAR 5 IS COMING");
+    if (!JSON.parse(localStorage.getItem("settings")).BEAR5EffectsSwitch) {
+        document.body.classList.add("BEAR5-FLASH");
+        document.body.classList.add("vignette-overlay");
+    }
+    const BEAR5TEXT = document.getElementById("BEAR5-TEXT");
+    BearAlarm.play();
+    BearArrive.play();
+    BEAR5TEXT.innerText = "BEAR 5 IS COMING"
+    BEAR5TEXT.classList.remove("hide");
+    await sleep(5000);
+    BearLoop.play();
+    let BEAR5HEALTH = 100 + (JohnsClicked * 1.5) / 5;
+    BEAR5TEXT.innerText = BEAR5HEALTH.toLocaleString();
+    BEAR5.classList.remove("hide");
+    BEAR5.onclick = () => {
+        BEAR5HEALTH -= (JohnsPerClick / 2)
+        BEAR5TEXT.innerText = BEAR5HEALTH.toLocaleString();
+        BearClick.play();
+    }
+    await waitUntil(() => {return BEAR5HEALTH <= 0}, 0.1)
+    BEAR5.classList.add("hide");
+    BEAR5TEXT.classList.add("hide");
+    if (!JSON.parse(localStorage.getItem("settings")).BEAR5EffectsSwitch) {
+        document.body.classList.remove("BEAR5-FLASH");
+        document.body.classList.remove("vignette-overlay");
+    }
+    BearAlarm.pause();
+    BearLoop.pause();
+}
+
+async function startBear5() {
+    if (JSON.parse(localStorage.getItem("settings")).BEAR5DisableSwitch) {
+        console.log("BEAR 5 is disabled");
+        return;
+    }
+    while (1) {
+        await sleep(Math.floor(Math.random() * (75000 - 50000 + 1)) + 50000)
+        await sendBEAR5();
+        if (JSON.parse(localStorage.getItem("settings")).BEAR5DisableSwitch) {
+            console.log("BEAR 5 is disabled");
+            return;
+        }
+    }   
+}
+
+window.startBear5 = startBear5
+window.sendBEAR5 = sendBEAR5
 
 function SetJohnsClicked(amount) {
     JohnsClicked = UpdateJohnScore(amount);
@@ -157,3 +245,7 @@ document.getElementById(EquippedLennon).classList.add('equipped');
 document.getElementById('AccessoryImage').src = JohnAccessories[EquippedAccessory].Image;
 document.getElementById(EquippedAccessory).classList.add('equipped');
 johntiplierHeading.textContent = `Johntiplier: ${BaseJohntiplier}x`;
+
+if (!JSON.parse(localStorage.getItem("settings")).BEAR5DisableSwitch) {
+    startBear5();
+}
