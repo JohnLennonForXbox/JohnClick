@@ -96,11 +96,11 @@ async function sendBEAR5() {
     BEAR5TEXT.classList.remove("hide");
     await sleep(5000);
     BearLoop.play();
-    let BEAR5HEALTH = 100 + (JohnsClicked * 1.5) / 5;
+    let BEAR5HEALTH = 100 + (JohnsClicked * 0.5) / 5;
     BEAR5TEXT.innerText = BEAR5HEALTH.toLocaleString();
     BEAR5.classList.remove("hide");
     BEAR5.onclick = () => {
-        BEAR5HEALTH -= (JohnsPerClick / 2)
+        BEAR5HEALTH -= (JohnsPerClick / 2) * (Johntiplier * 0.8);
         BEAR5TEXT.innerText = BEAR5HEALTH.toLocaleString();
         BearClick.play();
     }
