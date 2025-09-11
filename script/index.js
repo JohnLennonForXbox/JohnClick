@@ -100,7 +100,7 @@ async function sendBEAR5() {
     BEAR5TEXT.innerText = BEAR5HEALTH.toLocaleString();
     BEAR5.classList.remove("hide");
     BEAR5.onclick = () => {
-        BEAR5HEALTH -= (JohnsPerClick / 2) * (Johntiplier * 0.8);
+        BEAR5HEALTH -= (JohnsPerClick / 2) * (BaseJohntiplier * 0.8);
         BEAR5TEXT.innerText = BEAR5HEALTH.toLocaleString();
         BearClick.play();
     }
