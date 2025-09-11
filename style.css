@@ -222,6 +222,10 @@ details,
   display: flex;
 }
 
+details {
+  display: inline-block;
+}
+
 .container button {
   font-size: 3em;
   border: 5px solid var(--button-border-color);
