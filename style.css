@@ -274,8 +274,9 @@ details summary {
 
 #settingsGodfather { 
   height: 80%;
-  width: auto;
+  width: 90%;
   position: relative;
+  display: flex;
 }
 
 label {

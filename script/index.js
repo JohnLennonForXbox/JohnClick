@@ -90,6 +90,7 @@ async function sendBEAR5() {
         document.body.classList.add("vignette-overlay");
     }
     const BEAR5TEXT = document.getElementById("BEAR5-TEXT");
+    document.activeElement.blur();
     BearAlarm.play();
     BearArrive.play();
     BEAR5TEXT.innerText = "BEAR 5 IS COMING"
@@ -99,6 +100,7 @@ async function sendBEAR5() {
     let BEAR5HEALTH = 100 + (JohnsClicked * 0.5) / 5;
     BEAR5TEXT.innerText = BEAR5HEALTH.toLocaleString();
     BEAR5.classList.remove("hide");
+    BEAR5.focus();
     BEAR5.onclick = () => {
         BEAR5HEALTH -= (JohnsPerClick / 2) * (BaseJohntiplier * 0.8);
         BEAR5TEXT.innerText = BEAR5HEALTH.toLocaleString();
