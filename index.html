@@ -9,6 +9,7 @@
     <meta property="og:url" content="https://johnlennonforxbox.github.io/JohnClick/">
     <link rel="icon" href="./img/jlennon.png">
     <link rel="stylesheet" href="./style.css">
+    <link rel="manifest" href="/manifest.json">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -89,6 +90,60 @@
     <script src="./script/index.js" type="module"></script>
     <script src="./script/share.js" type="module"></script>
     <script src="./script/settings.js" type="module"></script>
+    <script src="./script/common.js" type="module"></script>
+
+    <script src="./upup.min.js"></script>
+    <script type="module">
+      import GAMEINFO from './common.js';
+        UpUp.start({
+        'content-url': 'index.html',
+        'assets': [
+          './style.css',
+          './md-style.css',
+          './changelog.html',
+          './licenses.html',
+          './script/index.js', 
+          './script/common.js',
+          './script/johnaccessories.js',
+          './script/johnconnect.js',
+          './script/johngrades.js',
+          './script/save-fixer.js',
+          './script/settings.js',
+          './script/share.js',
+          './script/modules/GameCoordinator.js',
+          './script/modules/JohngradeAssembler.js',
+          './script/modules/Saveinator.js', 
+          './img/amethyst lennon.png',
+          './img/Chimera Lennon.png',
+          './img/diamong lennon.png',
+          './img/emerald lennon.png',
+          './img/gold lennon.png',
+          './img/invincible lennon.png',
+          './img/iron lennon.png',
+          './img/jlennon.png',
+          './img/ruby lennon.png',
+          './img/Six Lennon.png',
+          './img/stone lennon.png',
+          './img/misc/Bear_5.png',
+          './img/misc/lowtaperfade.png',
+          './img/accessories/awesome glasses.svg',
+          './img/accessories/birthday lennon.svg',
+          './img/accessories/Coolio lennio.svg',
+          './img/accessories/Johnny Bowtie.svg',
+          './img/accessories/misery.svg',
+          './img/accessories/none.png',
+          "./img/accessories/ringo's scarf.svg",
+          "./img/accessories/rockin' John hat.svg",
+          './img/accessories/Wizard Hat.svg',
+          '/audio/alarm.mp3',
+          '/audio/bear5-arrival.wav',
+          '/audio/bearLoop.wav',
+          '/audio/Bonk.wav',
+          '/audio/John lennon.wav',
+        ],
+        'cache-version': GAMEINFO.GAMEVERSION
+        });
+    </script>
 
     <div class="darken hide" id="settings">
       <div class="container center" style="flex-direction: column;" id="settingsGodfather">

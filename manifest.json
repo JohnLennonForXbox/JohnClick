@@ -1,0 +1,23 @@
+{
+    "name": "John Lennon Clicker",
+    "short_name": "John Lennon Clicker",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "./img/Six Lennon.png",
+            "type": "image/png",
+            "sizes": "1080x1096"
+        },
+        {
+            "src": "./img/Six Lennon.png",
+            "type": "image/png",
+            "sizes": "1080x1096",
+            "purpose": "maskable"
+        }
+    ],
+    "description": "Click john lennon until you cant take it anymore",
+    "start_url": "./index.html",
+    "background_color": "#000000",
+    "scope": "./",
+    "theme_color": "#000000"
+}
