@@ -6,14 +6,13 @@
         {
             "src": "./img/Six Lennon Icon.png",
             "type": "image/png",
-            "sizes": "1080x1080",
-            "purpose": "any"
+            "sizes": "1080x1080"
         },
         {
             "src": "./img/Six Lennon Icon.png",
             "type": "image/png",
             "sizes": "1080x1080",
-            "purpose": "maskable"
+            "purpose": "maskable any"
         }
     ],
     "description": "Click john lennon until you cant take it anymore",
