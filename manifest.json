@@ -6,7 +6,8 @@
         {
             "src": "./img/Six Lennon Icon.png",
             "type": "image/png",
-            "sizes": "1080x1080"
+            "sizes": "1080x1080",
+            "purpose": "any"
         },
         {
             "src": "./img/Six Lennon Icon.png",
