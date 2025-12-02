@@ -4,14 +4,14 @@
     "display": "standalone",
     "icons": [
         {
-            "src": "./img/Six Lennon.png",
+            "src": "./img/Six Lennon Icon.png",
             "type": "image/png",
-            "sizes": "1080x1096"
+            "sizes": "1080x1080"
         },
         {
-            "src": "./img/Six Lennon.png",
+            "src": "./img/Six Lennon Icon.png",
             "type": "image/png",
-            "sizes": "1080x1096",
+            "sizes": "1080x1080",
             "purpose": "maskable"
         }
     ],
